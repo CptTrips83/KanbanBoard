@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 4815162342
+      MYSQL_DATABASE: test_symfony_vue_template
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: c5Lq!._bX4gF)ju!
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: symfony
+      PMA_PASSWORD: c5Lq!._bX4gF)ju!
+    ports:
+      - "9000:80"
+    depends_on:
+      - mariadb
